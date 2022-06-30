@@ -40,7 +40,12 @@ def sorting_students_list(student_list):
     length = len(student_list)
     for i in range(0, length):
         for j in range(0, length - i - 1):
-            if student_list[j][1] > student_list[j+1][1]:
+            if student_list[j][1] >= 0:
+                if student_list[j][1] > student_list[j+1][1]:
+                    temp = student_list[j]
+                    student_list[j] = student_list[j+1]
+                    student_list[j+1] = temp
+            else:
                 temp = student_list[j]
                 student_list[j] = student_list[j+1]
                 student_list[j+1] = temp
@@ -55,14 +60,16 @@ def check_second_lowest_number(student_list):
     length = len(student_list)
     for i in range(0, length-1):
         for j in range(0, length-1):
-            if student_list[j+1][1] > student_list[j][1]:
+            if student_list[j + 1][1] == student_list[i][1]:
+                pass
+            elif student_list[j+1][1] > student_list[j][1]:
                 for x in range(0, length - 1):
                     if student_list[x+1][1] == student_list[j + 1][1]:
                         temp_list.append(student_list[x+1])
                 temp = sorting_lowest_score_list(temp_list)
                 printing_lowest_score_list(temp)
                 break
-            if student_list[j + 1][1] == student_list[i][1]:
+            elif student_list[j + 1][1] == student_list[j][1]:
                 temp_list.append(student_list[j])
                 for x in range(0, length - 1):
                     if student_list[x+1][1] == student_list[j + 1][1]:
@@ -70,6 +77,12 @@ def check_second_lowest_number(student_list):
                 temp = sorting_lowest_score_list(temp_list)
                 printing_lowest_score_list(temp)
                 break
+            else:
+                temp_list.append(student_list[j])
+                temp = sorting_lowest_score_list(temp_list)
+                printing_lowest_score_list(temp)
+                break
+
         break
     return temp_list
 
