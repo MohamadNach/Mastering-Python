@@ -77,6 +77,13 @@ def check_second_lowest_number(student_list):
                 temp = sorting_lowest_score_list(temp_list)
                 printing_lowest_score_list(temp)
                 break
+            elif student_list[j][1] < 0:
+                for x in range(0, length - 1):
+                    if student_list[x+1][1] == student_list[j + 1][1]:
+                        temp_list.append(student_list[x+1])
+                temp = sorting_lowest_score_list(temp_list)
+                printing_lowest_score_list(temp)
+                break
             else:
                 temp_list.append(student_list[j])
                 temp = sorting_lowest_score_list(temp_list)
